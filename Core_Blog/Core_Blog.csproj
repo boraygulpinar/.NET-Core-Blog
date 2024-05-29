@@ -73,6 +73,8 @@
     <None Include="wwwroot\web\webfonts\fa-solid-900.ttf" />
     <None Include="wwwroot\web\webfonts\fa-solid-900.woff" />
     <None Include="wwwroot\web\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\writer\.DS_Store" />
+    <None Include="wwwroot\writer\PSD\.DS_Store" />
   </ItemGroup>
 
   <ItemGroup>
