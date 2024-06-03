@@ -18,14 +18,19 @@ namespace BusinessLayer.Concrete
 			_writerDal = writerDal;
 		}
 
-		public void TDelete(Writer entity)
+        public List<Writer> GetWriterByID(int id)
+        {
+            return _writerDal.GetListAll(x=>x.WriterID==id);
+        }
+
+        public void TDelete(Writer entity)
 		{
 			throw new NotImplementedException();
 		}
 
 		public Writer TGetByID(int id)
 		{
-			throw new NotImplementedException();
+			return _writerDal.GetById(id);
 		}
 
 		public List<Writer> TGetList()
@@ -40,7 +45,7 @@ namespace BusinessLayer.Concrete
 
 		public void TUpdate(Writer entity)
 		{
-			throw new NotImplementedException();
+			_writerDal.Update(entity);
 		}
 	}
 }
