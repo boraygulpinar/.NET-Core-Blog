@@ -46,11 +46,13 @@ namespace Core_Blog.Controllers
         {
             return PartialView();
         }
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writerValues = _writerManager.TGetByID(1);
+            Context c = new Context();
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var writerValues = _writerManager.TGetByID(writerID);
             return View(writerValues);
         }
         [HttpPost]
