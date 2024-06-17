@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>ajaxtest</h1>
+<br />
+<btn typeof="button" itemid="btngetlist" class="btn btn-outline-primary">Yazar Listesi</btn>
+<br />
+<br />
+<div itemid="writerlist">
+    asd
+</div>
+@section scripts {
+    <script>
+        $("#btngetlist").click(function () {
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "Get",
+                url: "/Admin/Writer/WriterList",
+                success: function (func) {
+                    console.log(func);
+                }
+            });
+        });
+    </script>
+}
+
