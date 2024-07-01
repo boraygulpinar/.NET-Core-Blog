@@ -50,8 +50,9 @@ namespace Core_Blog.Controllers
         public IActionResult WriterEditProfile()
         {
             Context c = new Context();
-            var usermail = User.Identity.Name;
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var username = User.Identity.Name;
+            var usermail=c.Users.Where(x=>x.UserName== username).Select(y=>y.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.WriterMail == username).Select(y => y.WriterID).FirstOrDefault();
             var writerValues = _writerManager.TGetByID(writerID);
             return View(writerValues);
         }

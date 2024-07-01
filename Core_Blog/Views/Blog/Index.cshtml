@@ -9,7 +9,6 @@
     <div class="container">
         <h3 class="tittle">Blog Posts</h3>
         <div class="inner-sec">
-            <!--left-->
             <div class="left-blog-info-w3layouts-agileits text-left">
                 <div class="row">
                     @foreach (var item in Model)
@@ -32,21 +31,27 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fas fa-eye"></i> @item.Category.CategoryName
+                                            <i class="fas fa-eye"></i> @(item.Category?.CategoryName ?? "Uncategorized")
                                         </a>
                                     </li>
                                 </ul>
                                 <h5 class="card-title">
                                     <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
                                 </h5>
-                                <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,130).LastIndexOf(" "))...</p>
+                                <p class="card-text mb-3">
+                                    @{
+                                        var content = item.BlogContent ?? "";
+                                        var contentPreview = content.Length > 130 ? content.Substring(0, Math.Min(content.Length, 130)) : content;
+                                        var lastSpaceIndex = contentPreview.LastIndexOf(" ");
+                                        var previewText = lastSpaceIndex > 0 ? contentPreview.Substring(0, lastSpaceIndex) : contentPreview;
+                                    }
+                                    @previewText...
+                                </p>
                                 <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-primary read-m">Read More</a>
                             </div>
                         </div>
                     }
-
                 </div>
-                <!--//left-->
             </div>
         </div>
     </div>

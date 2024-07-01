@@ -13,17 +13,21 @@ using System.Linq;
 
 namespace Core_Blog.Controllers
 {
+
     public class BlogController : Controller
     {
         BlogManager _blogManager = new BlogManager(new EfBlogRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         Context c = new Context();
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = _blogManager.GetBlogListWithCategory();
             return View(values);
         }
+
+        [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.Id = id;
